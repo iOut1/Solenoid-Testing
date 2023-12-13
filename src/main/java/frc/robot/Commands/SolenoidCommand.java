@@ -17,15 +17,20 @@ public class SolenoidCommand extends CommandBase {
     
     @Override
     public void initialize() {
-        m_solenoid.pushOff();
+        m_solenoid.clawPushOff();
     }
 
     @Override
     public void execute() {
-        if (m_controller.getRightBumper() && !m_controller.getLeftBumper()) {
-            m_solenoid.pushForward();
-        } else if (m_controller.getLeftBumper() && !m_controller.getRightBumper()) {
-            m_solenoid.pushBackward();
+        if (m_controller.getRightBumperPressed() && !m_controller.getLeftBumperPressed()) {
+            m_solenoid.closeClaw();
+        } else if (m_controller.getLeftBumperPressed() && !m_controller.getRightBumperPressed()) {
+            m_solenoid.openClaw();
+        }
+        if (m_controller.getXButtonPressed()) {
+            m_solenoid.raiseArm();
+        }else if (m_controller.getAButton()){
+            m_solenoid.armOff();
         }
     }
 
@@ -36,6 +41,6 @@ public class SolenoidCommand extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        m_solenoid.pushOff();
+        m_solenoid.clawPushOff();
     }
 }

@@ -20,5 +20,7 @@ public final class Constants {
   public static class SolenoidConstants {
     public static final int forwardSolenoidChannel = 1;
     public static final int backwardSolenoidChannel = 0;
+
+    public static final int raiseSolenoidChannel = 3;
   }
 }
